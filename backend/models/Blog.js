@@ -14,10 +14,11 @@ const BlogSchema = new mongoose.Schema({
     desc: {
         type: String,
         required: true,
-        min: 12,
+        min: 5,
     },
     photo: {
         type: String,
+        default: "https://neilpatel.com/wp-content/uploads/2017/09/blog-post-image-guide.jpg",
         required: true,
     },
     category: {
@@ -36,6 +37,6 @@ const BlogSchema = new mongoose.Schema({
         type: [String],
         default: [],
     }
-}, {timestamps: true})
+}, { timestamps: true })
 
 module.exports = mongoose.model("Blog", BlogSchema)
