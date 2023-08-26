@@ -1,5 +1,6 @@
 const express = require('express')
 const connectToMongo = require("./db.js");
+const mongoose=require("mongoose")
 const dotenv = require('dotenv').config()
 const cors = require('cors')
 const authController = require('./controllers/authController')
@@ -8,7 +9,16 @@ const multer = require('multer')
 const app = express()
 
 // connect db
-connectToMongo()
+mongoose.set("strictQuery", false);
+
+mongoose.connect(process.env.URL, {
+
+    useUnifiedTopology: true,
+
+    useNewUrlParser: true,
+
+}).then(console.log('connect sucess to mongodb'))
+
 
 // routes
 app.use('/images', express.static('public/images'))
